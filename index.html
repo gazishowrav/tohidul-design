@@ -116,28 +116,22 @@
             animation: float 6s ease-in-out infinite;
         }
 
+        /* Mobile Menu Transition */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #mobile-menu.is-open {
+            transform: translateX(0);
+        }
+
+        #mobile-menu:not(.is-open) {
+            transform: translateX(100%); /* Start off-screen */
+        }
+
 
     </style>
 </head>
-<body>
-
-    <!-- Floating Social Bar -->
-    <div class="fixed top-1/2 -translate-y-1/2 right-0 z-50">
-        <div class="flex flex-col gap-2 bg-secondary-dark/50 backdrop-blur-sm p-2 rounded-l-lg border-l border-t border-b border-gray-700/50">
-            <a href="#" target="_blank" class="text-gray-300 hover:text-accent transition-colors duration-300 p-2" aria-label="LinkedIn">
-                <i class="fab fa-linkedin-in text-xl"></i>
-            </a>
-            <a href="#" target="_blank" class="text-gray-300 hover:text-accent transition-colors duration-300 p-2" aria-label="Behance">
-                <i class="fab fa-behance text-xl"></i>
-            </a>
-            <a href="#" target="_blank" class="text-gray-300 hover:text-accent transition-colors duration-300 p-2" aria-label="Dribbble">
-                <i class="fab fa-dribbble text-xl"></i>
-            </a>
-            <a href="#" target="_blank" class="text-gray-300 hover:text-accent transition-colors duration-300 p-2" aria-label="GitHub">
-                <i class="fab fa-github text-xl"></i>
-            </a>
-        </div>
-    </div>
 <body>
 
     <!-- Navigation -->
@@ -184,21 +178,38 @@
                     </div>
                 </div>
                 <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none">
-                        <i class="fas fa-bars text-xl"></i>
+                    <button id="mobile-menu-button" class="relative z-[60] text-gray-300 hover:text-white focus:outline-none">
+                        <i id="hamburger-icon" class="fas fa-bars text-xl"></i>
+                        <i id="close-icon" class="fas fa-times text-xl hidden"></i>
                     </button>
                 </div>
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-secondary-dark border-t border-gray-700">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <div class="px-3 py-2 font-medium text-white">Work Showcase</div>
-                <a href="#" class="block px-3 py-2 text-gray-300 hover:bg-primary-dark hover:text-white">Case Study</a>
-                <a href="#" class="block px-3 py-2 text-gray-300 hover:bg-primary-dark hover:text-white">UI-UX Design</a>
-                <a href="#" class="block px-3 py-2 text-gray-300 hover:bg-primary-dark hover:text-white">Visual Design</a>
-                <a href="#my-story" class="block px-3 py-2 text-gray-300 hover:bg-primary-dark hover:text-white">My Story</a>
-                <a href="#resume" class="block px-3 py-2 text-gray-300 hover:bg-primary-dark hover:text-white">Resume</a>
+        <div id="mobile-menu" class="fixed top-0 right-0 bottom-0 h-[100vh] w-full max-w-xs bg-secondary-dark shadow-lg flex flex-col md:hidden z-50">
+            <!-- Menu Header -->
+            <div class="bg-secondary-dark flex justify-between items-center px-4 py-4 border-b border-gray-700">
+                <span class="text-lg font-semibold text-white">Menu</span>
+            </div>
+            
+            <!-- Menu Links -->
+            <nav class="flex-grow bg-secondary-dark p-4 space-y-2">
+                <div class="px-3 py-2 font-medium text-gray-400 text-sm uppercase tracking-wider">Work Showcase</div>
+                <a href="#" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">Case Study</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">UI-UX Design</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">Visual Design</a>
+                <a href="#my-story" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-primary-dark hover:text-white transition-colors mt-4">My Story</a>
+                <a href="#resume" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">Resume</a>
+            </nav>
+
+            <!-- Menu Footer -->
+            <div class="bg-secondary-dark p-4 border-t border-gray-700">
+                <div class="flex justify-center gap-6">
+                    <a href="#" target="_blank" class="text-gray-400 hover:text-accent transition-colors"><i class="fab fa-linkedin-in text-xl"></i></a>
+                    <a href="#" target="_blank" class="text-gray-400 hover:text-accent transition-colors"><i class="fab fa-behance text-xl"></i></a>
+                    <a href="#" target="_blank" class="text-gray-400 hover:text-accent transition-colors"><i class="fab fa-dribbble text-xl"></i></a>
+                    <a href="#" target="_blank" class="text-gray-400 hover:text-accent transition-colors"><i class="fab fa-github text-xl"></i></a>
+                </div>
             </div>
         </div>
     </nav>
@@ -206,11 +217,11 @@
     <main class="pt-12 pb-24">
 
         <!-- ===== HERO SECTION ===== -->
-        <section id="home" class="px-4 sm:px-6 lg:px-8 mb-16" style="background: radial-gradient(ellipse at center, #111827, #0d0e13);">
+        <section id="home" class="px-4 sm:px-6 lg:px-8 mb-16 overflow-hidden" style="background: radial-gradient(ellipse at center, #111827, #0d0e13);">
             <div class="relative overflow-hidden max-w-7xl mx-auto">
-                <div class="grid md:grid-cols-2 gap-16 items-center py-24 md:py-32">
+                <div class="grid md:grid-cols-2 gap-y-16 md:gap-x-16 items-center py-24 md:py-32">
                     <!-- Left Column: Text Content -->
-                    <div class="space-y-6 text-center md:text-left">
+                    <div class="space-y-6 text-center md:text-left order-2 md:order-1">
                         <span class="text-accent uppercase font-semibold tracking-widest">Sr. UI/UX Designer & Developer</span>
                         <h1 class="text-5xl md:text-7xl font-black text-white leading-tight">
                             Building user-centered digital products.
@@ -218,44 +229,44 @@
                         <p class="text-xl text-gray-400 max-w-2xl mx-auto md:mx-0">
                             Passionate about creating beautiful and functional interfaces that solve real problems and delight users.
                         </p>
-                        <div class="flex gap-4 pt-4 justify-center md:justify-start">
+                        <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
                             <a href="#project-detail" class="px-8 py-3 bg-accent text-white font-semibold rounded-lg shadow-lg hover:bg-purple-700 transition">View My Work</a>
                             <a href="#contact" class="px-8 py-3 border-2 border-gray-600 text-gray-300 font-semibold rounded-lg hover:bg-secondary-dark transition">Get In Touch</a>
                         </div>
                     </div>
     
                     <!-- Right Column: Image -->
-                    <div class="flex justify-center items-center">
-                        <div class="relative w-96 h-96">
+                    <div class="flex justify-center items-center order-1 md:order-2">
+                        <div class="relative w-72 h-72 md:w-96 md:h-96">
                     
                             <!-- Profile Image & Floating Icons -->
-                            <div class="w-96 h-96 rounded-full overflow-hidden border-4 border-primary-dark shadow-2xl">
+                            <div class="w-full h-full rounded-full overflow-hidden border-4 border-primary-dark shadow-2xl">
                                 <img src="./assets/image/profile.jpg" alt="Profile Picture" class="w-full h-full object-cover">
                             </div>
 
                             <!-- Floating Skill Icons -->
-                            <div class="floating-icon absolute -top-4 left-10" style="animation-delay: 0s;">
-                                <div class="p-3 bg-secondary-dark/50 backdrop-blur-sm rounded-full shadow-lg border border-gray-700/50">
+                            <div class="floating-icon absolute -top-2 left-8 md:-top-4 md:left-10" style="animation-delay: 0s;">
+                                <div class="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center p-3 bg-secondary-dark/50 backdrop-blur-sm rounded-full shadow-lg border border-gray-700/50">
                                     <i class="icon-figma text-3xl text-white"></i>
                                 </div>
                             </div>
-                            <div class="floating-icon absolute top-20 -right-8" style="animation-delay: 1s;">
-                                <div class="p-3 bg-secondary-dark/50 backdrop-blur-sm rounded-full shadow-lg border border-gray-700/50">
+                            <div class="floating-icon absolute top-16 -right-4 md:top-20 md:-right-8" style="animation-delay: 1s;">
+                                <div class="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center p-3 bg-secondary-dark/50 backdrop-blur-sm rounded-full shadow-lg border border-gray-700/50">
                                     <i class="icon-layout-grid-02 text-3xl text-white"></i>
                                 </div>
                             </div>
-                            <div class="floating-icon absolute -bottom-8 left-16" style="animation-delay: 2s;">
-                                <div class="p-3 bg-secondary-dark/50 backdrop-blur-sm rounded-full shadow-lg border border-gray-700/50">
+                            <div class="floating-icon absolute -bottom-4 left-12 md:-bottom-8 md:left-16" style="animation-delay: 2s;">
+                                <div class="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center p-3 bg-secondary-dark/50 backdrop-blur-sm rounded-full shadow-lg border border-gray-700/50">
                                     <i class="icon-code-01 text-3xl text-white"></i>
                                 </div>
                             </div>
-                            <div class="floating-icon absolute bottom-20 -left-10" style="animation-delay: 3s;">
-                                <div class="p-3 bg-secondary-dark/50 backdrop-blur-sm rounded-full shadow-lg border border-gray-700/50">
+                            <div class="floating-icon absolute bottom-16 -left-6 md:bottom-20 md:-left-10" style="animation-delay: 3s;">
+                                <div class="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center p-3 bg-secondary-dark/50 backdrop-blur-sm rounded-full shadow-lg border border-gray-700/50">
                                     <i class="icon-palette text-3xl text-white"></i>
                                 </div>
                             </div>
-                            <div class="floating-icon absolute top-1/2 -translate-y-1/2 right-0 md:-right-20" style="animation-delay: 4s;">
-                                <div class="p-3 bg-secondary-dark/50 backdrop-blur-sm rounded-full shadow-lg border border-gray-700/50">
+                            <div class="floating-icon absolute top-1/2 -translate-y-1/2 -right-10 md:-right-20" style="animation-delay: 4s;">
+                                <div class="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center p-3 bg-secondary-dark/50 backdrop-blur-sm rounded-full shadow-lg border border-gray-700/50">
                                     <i class="icon-cpu-chip-01 text-3xl text-white"></i>
                                 </div>
                             </div>
@@ -408,7 +419,7 @@
 
     <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-800">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center text-gray-500">
-            <p class="text-sm">&copy; 2024 Studio A. All Rights Reserved.</p>
+            <p class="text-sm">&copy; 2024 Tohidul Islam. All Rights Reserved.</p>
             <div class="flex space-x-6 mt-4 md:mt-0">
                 <a href="#work" data-page="work" class="text-sm hover:text-white nav-link">Work</a>
                 <a href="#studio" data-page="studio" class="text-sm hover:text-white nav-link">Studio</a>
@@ -423,6 +434,19 @@
     <script>
         // Existing script for tab filtering
         document.addEventListener('DOMContentLoaded', function () {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const closeIcon = document.getElementById('close-icon');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('is-open');
+                // Toggle icons
+                hamburgerIcon.classList.toggle('hidden');
+                closeIcon.classList.toggle('hidden');
+            });
+
             const filterButtons = document.querySelectorAll('.tab-filter-btn');
             const workItems = document.querySelectorAll('#work-grid [data-category]');
 
