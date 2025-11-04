@@ -24,6 +24,12 @@
         }
     </script>
     <!-- Load Inter Font -->
+    <link rel="stylesheet" href="./assets/muse-icon-font/iconly.css">
+
+    <!-- Swiper.js for Carousel -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
         /* Base styles to match the dark aesthetic */
@@ -83,32 +89,122 @@
         .work-item-link {
             cursor: pointer;
         }
+
+        /* Mobile Menu Transition */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(100%); /* Start off-screen */
+        }
+
+        #mobile-menu.is-open {
+            transform: translateX(0);
+        }
+
     </style>
 </head>
 <body>
 
-    <header class="sticky top-0 z-10 bg-[#0d0e13] border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <!-- Logo/Home Link -->
-            <a href="index.html" class="text-xl font-extrabold text-white tracking-widest nav-link active" id="logo-link">
-                Tohidul Islam
+    <!-- Custom Cursor -->
+    <div id="custom-cursor" class="hidden fixed w-8 h-8 bg-accent/50 rounded-full pointer-events-none z-[9999] transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-150 ease-in-out"></div>
+
+
+    <!-- Floating Social Bar -->
+    <div class="fixed top-1/2 -translate-y-1/2 right-0 z-40 hidden md:block">
+        <div class="flex flex-col gap-2 bg-secondary-dark/50 backdrop-blur-sm p-2 rounded-l-lg border-l border-t border-b border-gray-700/50">
+            <a href="#" target="_blank" class="text-gray-300 hover:text-accent transition-colors duration-300 p-2" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in text-xl"></i>
             </a>
+            <a href="#" target="_blank" class="text-gray-300 hover:text-accent transition-colors duration-300 p-2" aria-label="Behance">
+                <i class="fab fa-behance text-xl"></i>
+            </a>
+            <a href="#" target="_blank" class="text-gray-300 hover:text-accent transition-colors duration-300 p-2" aria-label="Dribbble">
+                <i class="fab fa-dribbble text-xl"></i>
+            </a>
+            <a href="#" target="_blank" class="text-gray-300 hover:text-accent transition-colors duration-300 p-2" aria-label="GitHub">
+                <i class="fab fa-github text-xl"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-[#0d0e13]/90 backdrop-blur-sm z-50 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <i class="icon-type-02 text-2xl pr-3 text-accent border-r-2 border-accent"></i>
+                    <span class="text-xl uppercase font-bold text-white pl-3">Tohidul Islam</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <div class="relative group">
+                            <button class="nav-link text-gray-300 hover:text-white font-medium">
+                                Work Showcase
+                            </button>
+                            <!-- Mega Menu -->
+                            <div class="absolute left-1/2 -translate-x-1/2 mt-0 w-[32rem] bg-secondary-dark rounded-lg shadow-lg hidden group-hover:block z-50 border border-gray-700 overflow-hidden">
+                                <div class="flex gap-3">
+                                    <!-- Left side: Links with icons -->
+                                    <div class="w-1/2 p-4 space-y-2">
+                                        <a href="./project-detail-page.html" class="flex items-center gap-3 p-3 rounded-lg text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">
+                                            <i class="icon-file-heart-02 text-2xl text-center text-accent"></i>
+                                            <span class="font-medium">Case Study</span>
+                                        </a>
+                                        <a href="./work-page.html" class="flex items-center gap-3 p-3 rounded-lg text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">
+                                            <i class="icon-figma text-2xl text-center text-accent"></i>
+                                            <span class="font-medium">UI-UX Design</span>
+                                        </a>
+                                        <a href="./work-page.html" class="flex items-center gap-3 p-3 rounded-lg text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">
+                                            <i class="icon-palette text-2xl text-center text-accent"></i>
+                                            <span class="font-medium">Visual Design</span>
+                                        </a>
+                                    </div>
+                                    <!-- Right side: Image -->
+                                    <div class="w-1/2 bg-primary-dark">
+                                        <img src="./assets/image/Featured-Work.jpg" alt="Featured Work" class="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#my-story" class="nav-link text-gray-300 hover:text-white font-medium">My Story</a>
+                        <a href="./assets/doc/tohidul-islam-resume.pdf" target="_blank" class="nav-link text-gray-300 hover:text-white font-medium">Resume</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="relative z-[60] text-gray-300 hover:text-white focus:outline-none">
+                        <i id="hamburger-icon" class="fas fa-bars text-xl"></i>
+                        <i id="close-icon" class="fas fa-times text-xl hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="fixed top-0 right-0 bottom-0 min-h-[83vh] w-full max-w-xs bg-secondary-dark shadow-lg flex flex-col md:hidden z-50">
+            <!-- Menu Header -->
+            <div class="bg-secondary-dark flex justify-between items-center px-4 py-4 border-b border-gray-700">
+                <span class="text-lg font-semibold text-white">Menu</span>
+            </div>
             
-            <!-- Navigation Links -->
-            <nav class="space-x-8 text-gray-400 text-lg hidden sm:flex">
-                <a href="#work" data-page="work" class="nav-link">Work</a>
-                <a href="#studio" data-page="studio" class="nav-link">Studio</a>
-                <a href="#contact" data-page="contact" class="nav-link">Contact</a>
+            <!-- Menu Links -->
+            <nav class="flex-grow bg-secondary-dark p-4 space-y-2">
+                <div class="px-3 py-2 font-medium text-gray-400 text-sm uppercase tracking-wider">Work Showcase</div>
+                <a href="./case-study.html" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">Case Study</a>
+                <a href="./uiux-design.html" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">UI-UX Design</a>
+                <a href="./visual-design.html" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">Visual Design</a>
+                <a href="./my-story.html" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-primary-dark hover:text-white transition-colors mt-4">My Story</a>
+                <a href="./assets/doc/tohidul-islam-resume.pdf" target="_blank" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">Resume</a>
             </nav>
 
-            <!-- Mobile Menu Button (Placeholder) -->
-            <button class="sm:hidden text-white focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                </svg>
-            </button>
+            <!-- Menu Footer -->
+            <div class="bg-secondary-dark p-4 border-t border-gray-700">
+                <div class="flex justify-center gap-6">
+                    <a href="#" target="_blank" class="text-gray-400 hover:text-accent transition-colors"><i class="fab fa-linkedin-in text-xl"></i></a>
+                    <a href="#" target="_blank" class="text-gray-400 hover:text-accent transition-colors"><i class="fab fa-behance text-xl"></i></a>
+                    <a href="#" target="_blank" class="text-gray-400 hover:text-accent transition-colors"><i class="fab fa-dribbble text-xl"></i></a>
+                    <a href="#" target="_blank" class="text-gray-400 hover:text-accent transition-colors"><i class="fab fa-github text-xl"></i></a>
+                </div>
+            </div>
         </div>
-    </header>
+    </nav>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-24">
 
@@ -151,15 +247,13 @@
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center text-gray-500">
             <p class="text-sm">&copy; 2024 Tohidul Islam. All Rights Reserved.</p>
             <div class="flex space-x-6 mt-4 md:mt-0">
-                <a href="#work" data-page="work" class="text-sm hover:text-white nav-link">Work</a>
-                <a href="#studio" data-page="studio" class="text-sm hover:text-white nav-link">Studio</a>
-                <a href="#contact" data-page="contact" class="text-sm hover:text-white nav-link">Contact</a>
+                <a href="./work-page.html" class="text-sm hover:text-white nav-link">Work</a>
+                <a href="./studio-page.html" class="text-sm hover:text-white nav-link">Studio</a>
+                <a href="./contact-page.html" class="text-sm hover:text-white nav-link">Contact</a>
             </div>
         </div>
     </footer>
 
-    <script>
-        
-    </script>
+    <script src="./assets/script.js"></script>
 </body>
 </html>
