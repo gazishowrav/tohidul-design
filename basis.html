@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BASIS Website Redesign – Vue.js Case Study | Tohidul Islam</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            'primary-dark': '#111827',
+            'secondary-dark': '#1F2937',
+            'accent': '#9333ea'
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <style>
+    body { background-color: #0d0e13; color: #f3f4f6; font-family: 'Inter', sans-serif; }
+    .nav-link { position: relative; padding-bottom: 4px; transition: color 0.3s; }
+    .nav-link::after { content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background-color: currentColor; transition: width 0.3s ease-out; }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    .hero-text { font-size: 3rem; line-height: 1.1; }
+    @media (min-width: 640px) { .hero-text { font-size: 4.5rem; } }
+    @media (min-width: 1024px) { .hero-text { font-size: 7rem; } }
+  </style>
+</head>
+<body>
+  <nav class="fixed top-0 w-full bg-[#0d0e13]/90 backdrop-blur-sm z-50 border-b border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+      <a href="index.html" class="flex items-center">
+        <i class="icon-type-02 text-2xl pr-3 text-accent border-r-2 border-accent"></i>
+        <span class="text-xl uppercase font-bold text-white pl-3">Tohidul Islam</span>
+      </a>
+      <div class="hidden md:block space-x-8">
+        <a href="./case-study.html" class="nav-link text-gray-300 hover:text-white">Case Studies</a>
+        <a href="./my-story.html" class="nav-link text-gray-300 hover:text-white">About</a>
+        <a href="./assets/doc/tohidul-islam-resume.pdf" target="_blank" class="nav-link text-gray-300 hover:text-white">Resume</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-24">
+    <section id="project-detail-page">
+      <div class="py-16 md:py-24">
+        <span class="text-sm text-gray-500 uppercase tracking-widest">Web Development • 2020</span>
+        <h1 class="text-5xl md:text-7xl font-black text-white mt-4 mb-8 leading-tight">
+          BASIS.org.bd – Corporate Website Redesign
+        </h1>
+        <p class="text-xl text-gray-400 max-w-4xl">
+          A full redesign and redevelopment of the Bangladesh Association of Software and Information Services (BASIS) website, built using Vue.js to create a modern, scalable, and content-driven platform.
+        </p>
+      </div>
+
+      <div class="aspect-video bg-gray-700 rounded-xl overflow-hidden mb-16">
+        <img src="./assets/image/works/basis-home.jpg" alt="BASIS Website Preview" class="w-full h-full object-cover" />
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-b border-gray-800 py-8 mb-16">
+        <div>
+          <p class="text-sm text-gray-500 uppercase mb-1">Project Type</p>
+          <p class="text-white font-semibold">Corporate Website Development</p>
+        </div>
+        <div>
+          <p class="text-sm text-gray-500 uppercase mb-1">Role</p>
+          <p class="text-white font-semibold">Frontend Developer (Vue.js)</p>
+        </div>
+        <div>
+          <p class="text-sm text-gray-500 uppercase mb-1">Timeline</p>
+          <p class="text-white font-semibold">6 Months (2020)</p>
+        </div>
+        <div>
+          <p class="text-sm text-gray-500 uppercase mb-1">View Live</p>
+          <a href="https://basis.org.bd" target="_blank" class="text-accent font-semibold hover:underline">basis.org.bd →</a>
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto space-y-12">
+        <div>
+          <h2 class="text-4xl font-bold text-white mb-4">Project Overview</h2>
+          <p class="text-gray-400 leading-relaxed">
+            BASIS, the national trade body for Bangladesh’s software and IT industry, needed a complete website modernization. The goal was to improve accessibility, provide structured member information, and highlight national IT initiatives while maintaining a strong institutional presence.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-4xl font-bold text-white mb-4">The Challenge</h2>
+          <p class="text-gray-400 leading-relaxed">
+            The previous website had outdated technology, poor performance, and limited content management flexibility. BASIS required a modern, responsive, and easily maintainable platform that could serve members, media, and stakeholders efficiently.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-4xl font-bold text-white mb-4">The Solution</h2>
+          <p class="text-gray-400 leading-relaxed">
+            I developed the front-end architecture using Vue.js, integrating dynamic routing and modular components to support scalability. The design system was built around a clean layout with consistent branding, accessibility compliance, and optimized performance for a wide audience.
+          </p>
+          <div class="mt-8 aspect-video bg-gray-800 rounded-lg">
+            <img src="./assets/image/works/basis-features.jpg" alt="BASIS Features Mockup" class="w-full h-full object-cover opacity-90" />
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-4xl font-bold text-white mb-4">Key Highlights</h2>
+          <ul class="text-gray-400 space-y-3 list-disc list-inside">
+            <li><strong>Vue.js SPA Architecture:</strong> Developed a modular single-page application for smoother navigation and performance.</li>
+            <li><strong>Dynamic Member Directory:</strong> Implemented a searchable and filterable database of BASIS members and IT firms.</li>
+            <li><strong>Responsive Redesign:</strong> Fully mobile-friendly layout optimized for devices of all sizes.</li>
+            <li><strong>Content Management Integration:</strong> Connected with backend APIs for real-time news, events, and membership data.</li>
+            <li><strong>Accessibility & Localization:</strong> Supported bilingual content (English & Bangla) for inclusivity.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="text-4xl font-bold text-white mb-4">Outcome</h2>
+          <p class="text-gray-400 leading-relaxed">
+            The updated BASIS website successfully established a modern digital presence for Bangladesh’s IT industry. It improved content discoverability, member visibility, and user engagement — aligning BASIS’s online experience with its role as a leading industry platform.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-800">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center text-gray-500">
+      <p class="text-sm">&copy; 2025 Tohidul Islam. All Rights Reserved.</p>
+      <div class="flex space-x-6 mt-4 md:mt-0">
+        <a href="#" class="text-sm hover:text-white nav-link">About</a>
+        <a href="#" class="text-sm hover:text-white nav-link">Services</a>
+        <a href="#" class="text-sm hover:text-white nav-link">Contact</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

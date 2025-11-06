@@ -277,6 +277,29 @@
         </div>
     </footer>
 
-    <script src="./assets/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const workItems = document.querySelectorAll('#work-grid .work-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Manage active button styles
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-accent', 'text-white');
+                        btn.classList.add('bg-secondary-dark', 'text-gray-300');
+                    });
+                    button.classList.add('active', 'bg-accent', 'text-white');
+                    button.classList.remove('bg-secondary-dark', 'text-gray-300');
+
+                    const filter = button.getAttribute('data-filter');
+
+                    workItems.forEach(item => {
+                        item.style.display = (filter === 'all' || item.getAttribute('data-category').includes(filter)) ? 'block' : 'none';
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html>
