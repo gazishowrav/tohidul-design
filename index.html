@@ -119,6 +119,13 @@
         #mobile-menu.is-open {
             transform: translateX(0);
         }
+
+        /* Blink animation for background */
+        @keyframes blink-background {
+            0% { background-color: #111827; } /* primary-dark */
+            50% { background-color: #1F2937; } /* secondary-dark */
+            100% { background-color: #111827; }
+        }
     </style>
 </head>
 <body>
@@ -128,16 +135,16 @@
     <!-- Floating Social Bar -->
     <div class="fixed top-1/2 -translate-y-1/2 right-0 z-40 hidden md:block">
         <div class="flex flex-col gap-2 bg-secondary-dark/50 backdrop-blur-sm p-2 rounded-l-lg border-l border-t border-b border-gray-700/50">
-            <a href="#" target="_blank" class="text-gray-300 hover:text-accent transition-colors duration-300 p-2" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/tohidul-islam-design/" target="_blank" class="text-gray-300 hover:text-accent transition-colors duration-300 p-2" aria-label="LinkedIn">
                 <i class="fab fa-linkedin-in text-xl"></i>
             </a>
-            <a href="#" target="_blank" class="text-gray-300 hover:text-accent transition-colors duration-300 p-2" aria-label="Behance">
+            <a href="https://www.behance.net/touhidislam-design" target="_blank" class="text-gray-300 hover:text-accent transition-colors duration-300 p-2" aria-label="Behance">
                 <i class="fab fa-behance text-xl"></i>
             </a>
-            <a href="#" target="_blank" class="text-gray-300 hover:text-accent transition-colors duration-300 p-2" aria-label="Dribbble">
+            <a href="https://dribbble.com/tohidul-islam-design" target="_blank" class="text-gray-300 hover:text-accent transition-colors duration-300 p-2" aria-label="Dribbble">
                 <i class="fab fa-dribbble text-xl"></i>
             </a>
-            <a href="#" target="_blank" class="text-gray-300 hover:text-accent transition-colors duration-300 p-2" aria-label="GitHub">
+            <a href="https://github.com/gazishowrav" target="_blank" class="text-gray-300 hover:text-accent transition-colors duration-300 p-2" aria-label="GitHub">
                 <i class="fab fa-github text-xl"></i>
             </a>
         </div>
@@ -176,7 +183,7 @@
                                         </a>
                                     </div>
                                     <!-- Right side: Image -->
-                                    <div class="w-1/2 bg-primary-dark">
+                                    <div class="w-1/2 bg-primary-dark blink-bg">
                                         <img src="./assets/image/Featured-Work.jpg" alt="Featured Work" class="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110">
                                     </div>
                                 </div>
@@ -236,7 +243,7 @@
                             Grow Your Brand with Impactful <br> UI & UX
                         </h1>
                         <p class="text-xl text-gray-400 max-w-2xl mx-auto md:mx-0">
-                            Passionate about creating beautiful and functional interfaces that solve real problems and delight users.
+                           Passionate UI-UX Designer crafting intuitive SaaS and B2B interfaces powered by scalable design systems.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
                             <a href="./my-works.html" class="px-8 py-3 bg-accent text-white font-semibold rounded-lg shadow-lg hover:bg-purple-700 transition">See What I’ve Designed</a>
@@ -338,30 +345,30 @@
                 <!-- Work Card 1 -->
                 <a href="./hopon-details.html" data-page="project-detail" data-category="case-study" class="group work-card block rounded-xl transition duration-300 work-item-link">
                     <div class="aspect-video bg-gray-700 rounded-lg overflow-hidden mb-4"><img src="./assets/image/works/hopon2.jpg" alt="Project A preview" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-transform duration-500 ease-in-out group-hover:scale-105 group-hover:rotate-1" /></div>
-                    <p class="text-gray-400 text-sm">Mobile App • 2024</p>
+                    <p class="text-gray-400 text-sm">Mobile App • 2025</p>
                     <h3 class="text-3xl font-extrabold text-white mt-1 group-hover:text-accent transition-colors duration-300">Hop On: Ride, food & Delivery App</h3>
                     <div class="flex flex-wrap gap-2 pt-4"><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Branding</span><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">UI/UX</span><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Strategy</span></div>
                 </a>
 
                 <!-- Work Card 2 -->
-                <a href="#project-detail" data-page="project-detail" data-category="website saas" class="group work-card block rounded-xl transition duration-300 work-item-link">
-                    <div class="aspect-video bg-gray-700 rounded-lg overflow-hidden mb-4"><img src="https://placehold.co/800x450/1f2937/9333ea?text=Web+Design" alt="Project B preview" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-transform duration-500 ease-in-out group-hover:scale-105 group-hover:rotate-1" /></div>
-                    <p class="text-gray-400 text-sm">Website Launch • 2023</p>
-                    <h3 class="text-3xl font-extrabold text-white mt-1 group-hover:text-accent transition-colors duration-300">Aether Labs: Platform UX/UI Redesign</h3>
+                <a href="./ed-ai.html" data-page="project-detail" data-category="website saas" class="group work-card block rounded-xl transition duration-300 work-item-link">
+                    <div class="aspect-video bg-gray-700 rounded-lg overflow-hidden mb-4"><img src="./assets/image/works/ed-ai2.jpg" alt="Project B preview" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-transform duration-500 ease-in-out group-hover:scale-105 group-hover:rotate-1" /></div>
+                    <p class="text-gray-400 text-sm">Web Design • 2025</p>
+                    <h3 class="text-3xl font-extrabold text-white mt-1 group-hover:text-accent transition-colors duration-300">ED AI: AI-Powered University Admissions Assistant</h3>
                     <div class="flex flex-wrap gap-2 pt-4"><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Web Design</span><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Figma</span><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">SaaS</span></div>
                 </a>
 
                 <!-- Work Card 3 -->
                 <a href="#project-detail" data-page="project-detail" data-category="mobile-app" class="group work-card block rounded-xl transition duration-300 work-item-link">
-                    <div class="aspect-video bg-gray-700 rounded-lg overflow-hidden mb-4"><img src="https://placehold.co/800x450/1f2937/d1d5db?text=Mobile+App" alt="Project C preview" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-transform duration-500 ease-in-out group-hover:scale-105 group-hover:rotate-1" /></div>
-                    <p class="text-gray-400 text-sm">Mobile App • 2023</p>
-                    <h3 class="text-3xl font-extrabold text-white mt-1 group-hover:text-accent transition-colors duration-300">Zenith Flow: Mobile Experience</h3>
-                    <div class="flex flex-wrap gap-2 pt-4"><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Mobile Design</span><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">iOS</span><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Android</span></div>
+                    <div class="aspect-video bg-gray-700 rounded-lg overflow-hidden mb-4"><img src="./assets/image/works/3gem1.jpg" alt="Project C preview" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-transform duration-500 ease-in-out group-hover:scale-105 group-hover:rotate-1" /></div>
+                    <p class="text-gray-400 text-sm">Web Design • 2024</p>
+                    <h3 class="text-3xl font-extrabold text-white mt-1 group-hover:text-accent transition-colors duration-300">3Gem: Website Design</h3>
+                    <div class="flex flex-wrap gap-2 pt-4"><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Web Design</span><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">UI-UX Design</span><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Prototype</span></div>
                 </a>
 
                 <!-- Work Card 4 -->
                 <a href="#project-detail" data-page="project-detail" data-category="case-study website" class="group work-card block rounded-xl transition duration-300 work-item-link">
-                    <div class="aspect-video bg-gray-700 rounded-lg overflow-hidden mb-4"><img src="https://placehold.co/800x450/1f2937/9333ea?text=Dashboard" alt="Project D preview" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-transform duration-500 ease-in-out group-hover:scale-105 group-hover:rotate-1" /></div>
+                    <div class="aspect-video bg-gray-700 rounded-lg overflow-hidden mb-4"><img src="./assets/image/works/studylity2.png" alt="Project D preview" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-transform duration-500 ease-in-out group-hover:scale-105 group-hover:rotate-1" /></div>
                     <p class="text-gray-400 text-sm">Dashboard • 2022</p>
                     <h3 class="text-3xl font-extrabold text-white mt-1 group-hover:text-accent transition-colors duration-300">Quantum: Data Visualization Dashboard</h3>
                     <div class="flex flex-wrap gap-2 pt-4"><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">UI/UX Design</span><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Data Viz</span><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Analytics</span></div>
@@ -390,8 +397,8 @@
                     <!-- Slide 1 -->
                     <div class="swiper-slide">
                         <div class="bg-secondary-dark rounded-xl overflow-hidden group featured-work-slide">
-                            <img src="https://placehold.co/600x400/111827/9333ea?text=Project+Alpha" alt="Project Alpha" class="w-full h-48 object-cover">
-                            <div class="p-4"><h3 class="font-bold text-lg text-white">Project Alpha</h3><p class="text-sm text-gray-400">Frontend Development</p></div>
+                            <img src="./assets/image/works/hopon2.jpg" alt="Project Alpha" class="w-full h-48 object-cover">
+                            <div class="p-4"><h3 class="font-bold text-lg text-white">Hop On</h3><p class="text-sm text-gray-400">Mobile App</p></div>
                         </div>
                     </div>
                     <!-- Slide 2 -->
