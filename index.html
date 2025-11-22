@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,438 +33,512 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <style>
-        /* Base styles to match the dark aesthetic */
-        body {
-            background-color: #0d0e13; /* Very dark background */
-            color: #f3f4f6; /* Light gray text */
-            font-family: 'Inter', sans-serif;
-            min-height: 100vh;
-        }
-        /* Custom underline effect for navigation */
-        .nav-link {
-            position: relative;
-            padding-bottom: 4px;
-            transition: color 0.3s;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 0;
-            height: 2px;
-            background-color: currentColor; /* Matches text color */
-            transition: width 0.3s ease-out;
-        }
-        .nav-link:hover::after, .nav-link.active::after {
-            width: 100%;
-        }
-        .nav-link.active {
-            color: #ffffff;
-            font-weight: 600;
-        }
-
-        /* Responsive typography for the hero text */
-        .hero-text {
-            font-size: 3rem; /* Default for mobile */
-            line-height: 1.1;
-        }
-        @media (min-width: 640px) {
-            .hero-text {
-                font-size: 4.5rem;
-            }
-        }
-        @media (min-width: 1024px) {
-            .hero-text {
-                font-size: 7rem;
-            }
-        }
-        
-        /* Ensure cursor pointer on clickable work items */
-        .work-item-link {
-            cursor: pointer;
-        }
-
-        /* Custom Swiper Styles */
-        .swiper-button-next, .swiper-button-prev {
-            color: var(--accent, #9333ea);
-        }
-        .swiper-pagination-bullet-active {
-            background: var(--accent, #9333ea);
-        }
-        .featured-work-slide {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .featured-work-slide:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        /* Floating animation for skill icons */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-        .floating-icon {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        /* Mobile Menu Transition */
-        #mobile-menu {
-            transition: transform 0.3s ease-in-out;
-            transform: translateX(100%); /* Start off-screen */
-        }
-
-        #mobile-menu.is-open {
-            transform: translateX(0);
-        }
-
-        /* Blink animation for background */
-        @keyframes blink-background {
-            0% { background-color: #111827; } /* primary-dark */
-            50% { background-color: #1F2937; } /* secondary-dark */
-            100% { background-color: #111827; }
-        }
-    </style>
+    <link rel="stylesheet" href="./assets/css/main.css">
 </head>
+
 <body>
-    <!-- Custom Cursor -->
-    <div id="custom-cursor" class="hidden fixed w-8 h-8 bg-accent/50 rounded-full pointer-events-none z-[9999] transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-150 ease-in-out"></div>
+    <!-- Pink Aurora Top Background -->
+    <div class="absolute inset-0 z-0 pointer-events-none aurora-background"></div>
 
-    <!-- Floating Social Bar -->
-    <div class="fixed top-1/2 -translate-y-1/2 right-0 z-40 hidden md:block">
-        <div class="flex flex-col gap-2 bg-secondary-dark/50 backdrop-blur-sm p-2 rounded-l-lg border-l border-t border-b border-gray-700/50">
-            <a href="https://www.linkedin.com/in/tohidul-islam-design/" target="_blank" class="text-gray-300 hover:text-accent transition-colors duration-300 p-2" aria-label="LinkedIn">
-                <i class="fab fa-linkedin-in text-xl"></i>
-            </a>
-            <a href="https://www.behance.net/touhidislam-design" target="_blank" class="text-gray-300 hover:text-accent transition-colors duration-300 p-2" aria-label="Behance">
-                <i class="fab fa-behance text-xl"></i>
-            </a>
-            <a href="https://dribbble.com/tohidul-islam-design" target="_blank" class="text-gray-300 hover:text-accent transition-colors duration-300 p-2" aria-label="Dribbble">
-                <i class="fab fa-dribbble text-xl"></i>
-            </a>
-            <a href="https://github.com/tohidul-islam-design" target="_blank" class="text-gray-300 hover:text-accent transition-colors duration-300 p-2" aria-label="GitHub">
-                <i class="fab fa-github text-xl"></i>
-            </a>
+    <div class="relative z-10">
+
+        <!-- Custom Cursor -->
+        <div id="custom-cursor"
+            class="hidden fixed w-8 h-8 bg-accent/50 rounded-full pointer-events-none z-[9999] transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-150 ease-in-out">
         </div>
-    </div>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-[#0d0e13]/90 backdrop-blur-sm z-50 border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <a href="index.html" class="flex items-center">
-                    <i class="icon-type-02 text-2xl pr-3 text-accent border-r-2 border-accent"></i>
-                    <span class="text-xl uppercase font-bold text-white pl-3">Tohidul Islam</span>
+        <!-- Floating Social Bar -->
+        <div class="fixed top-1/2 -translate-y-1/2 right-0 z-40 hidden md:block">
+            <div
+                class="flex flex-col gap-2 bg-secondary-dark/50 backdrop-blur-sm p-2 rounded-l-lg border-l border-t border-b border-gray-700/50">
+                <a href="https://www.linkedin.com/in/tohidul-islam-design/" target="_blank"
+                    class="text-gray-300 hover:text-accent transition-colors duration-300 p-2" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in text-xl"></i>
                 </a>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <div class="relative group">
-                            <button class="nav-link text-gray-300 hover:text-white font-medium">
-                                Work Showcase
-                            </button>
-                            <!-- Mega Menu -->
-                            <div class="absolute left-1/2 -translate-x-1/2 mt-0 w-[32rem] bg-secondary-dark rounded-lg shadow-lg hidden group-hover:block z-50 border border-gray-700 overflow-hidden">
-                                <div class="flex gap-3">
-                                    <div class="w-1/2 p-4 flex flex-col">
-                                        <div class="space-y-2">
-                                            <a href="./case-study.html" class="flex items-center gap-3 p-3 rounded-lg text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">
-                                                <i class="icon-file-heart-02 text-2xl text-center text-accent"></i>
-                                                <span class="font-medium">Case Study</span>
-                                            </a>
-                                            <a href="./uiux-design.html" class="flex items-center gap-3 p-3 rounded-lg text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">
-                                                <i class="icon-figma text-2xl text-center text-accent"></i>
-                                                <span class="font-medium">UI-UX Design</span>
-                                            </a>
-                                            <a href="./visual-design.html" class="flex items-center gap-3 p-3 rounded-lg text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">
-                                                <i class="icon-palette text-2xl text-center text-accent"></i>
-                                                <span class="font-medium">Visual Design</span>
-                                            </a>
-                                        </div>
-                                        <div class="mt-auto pt-4 border-t border-gray-700">
-                                            <a href="./my-works.html" class="flex items-center justify-center gap-2 p-3 rounded-lg text-gray-300 bg-primary-dark hover:text-white transition-colors">
-                                                <span class="font-semibold">See All Works</span>
-                                                <i class="fas fa-arrow-right text-sm"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <!-- Right side: Image -->
-                                    <div class="w-1/2 bg-primary-dark blink-bg">
-                                        <video src="./assets/image/feature-work2.mp4" autoplay loop muted playsinline class="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110" alt="Featured Work Video"></video>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                         <a href="./my-story.html" class="nav-link text-gray-300 hover:text-white font-medium">My Story</a>
-                        <a href="./assets/doc/tohidul-islam-resume.pdf" target="_blank" class="nav-link text-gray-300 hover:text-white font-medium">Resume</a>
-                    </div>
-                </div>
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="relative z-[60] text-gray-300 hover:text-white focus:outline-none">
-                        <i id="hamburger-icon" class="fas fa-bars text-xl"></i>
-                        <i id="close-icon" class="fas fa-times text-xl hidden"></i>
-                    </button>
-                </div>
+                <a href="https://www.behance.net/touhidislam-design" target="_blank"
+                    class="text-gray-300 hover:text-accent transition-colors duration-300 p-2" aria-label="Behance">
+                    <i class="fab fa-behance text-xl"></i>
+                </a>
+                <a href="https://dribbble.com/tohidul-islam-design" target="_blank"
+                    class="text-gray-300 hover:text-accent transition-colors duration-300 p-2" aria-label="Dribbble">
+                    <i class="fab fa-dribbble text-xl"></i>
+                </a>
+                <a href="https://github.com/tohidul-islam-design" target="_blank"
+                    class="text-gray-300 hover:text-accent transition-colors duration-300 p-2" aria-label="GitHub">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
             </div>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="fixed top-0 right-0 bottom-0 min-h-[83vh] w-full max-w-xs bg-secondary-dark shadow-lg flex flex-col md:hidden z-50">
-            <!-- Menu Header -->
-            <div class="bg-secondary-dark flex justify-between items-center px-4 py-4 border-b border-gray-700">
-                <span class="text-lg font-semibold text-white">Menu</span>
-            </div>
-            
-            <!-- Menu Links -->
-            <nav class="flex-grow bg-secondary-dark p-4 space-y-2">
-                <div class="px-3 py-2 font-medium text-gray-400 text-sm uppercase tracking-wider">Work Showcase</div>
-                <a href="./case-study.html" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">Case Study</a>
-                <a href="./uiux-design.html" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">UI-UX Design</a>
-                <a href="./visual-design.html" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">Visual Design</a>
-                <a href="./my-story.html" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-primary-dark hover:text-white transition-colors mt-4">My Story</a>
-                <a href="./assets/doc/tohidul-islam-resume.pdf" target="_blank" class="block px-3 py-2 rounded-md text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">Resume</a>
-            </nav>
 
-            <!-- Menu Footer -->
-            <div class="bg-secondary-dark p-4 border-t border-gray-700">
-                <div class="flex justify-center gap-6">
-                    <a href="#" target="_blank" class="text-gray-400 hover:text-accent transition-colors"><i class="fab fa-linkedin-in text-xl"></i></a>
-                    <a href="#" target="_blank" class="text-gray-400 hover:text-accent transition-colors"><i class="fab fa-behance text-xl"></i></a>
-                    <a href="#" target="_blank" class="text-gray-400 hover:text-accent transition-colors"><i class="fab fa-dribbble text-xl"></i></a>
-                    <a href="#" target="_blank" class="text-gray-400 hover:text-accent transition-colors"><i class="fab fa-github text-xl"></i></a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <main class="pt-12 pb-24">
-
-        <!-- ===== HERO SECTION ===== -->
-        <section id="home" class="px-4 sm:px-6 lg:px-8 mb-16 overflow-hidden" style="background: radial-gradient(ellipse at center, #111827, #0d0e13);">
-            <div class="relative overflow-hidden max-w-7xl mx-auto">
-                <div class="grid md:grid-cols-2 gap-y-16 md:gap-x-16 items-center py-24 md:py-32">
-                    <!-- Left Column: Text Content -->
-                    <div class="space-y-6 text-center md:text-left order-2 md:order-1">
-                        <span class="text-accent uppercase font-semibold tracking-widest">Sr. UI/UX Designer & Developer</span>
-                        <h1 class="text-5xl md:text-7xl font-bold text-white leading-tight">
-                            Grow Your Brand with Impactful <br> UI & UX
-                        </h1>
-                        <p class="text-xl text-gray-400 max-w-2xl mx-auto md:mx-0">
-                           Passionate UI-UX Designer crafting intuitive SaaS and B2B interfaces powered by scalable design systems.
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
-                            <a href="./my-works.html" class="px-8 py-3 bg-accent text-white font-semibold rounded-lg shadow-lg hover:bg-purple-700 transition">See What I’ve Designed</a>
-                            <a href="./contact-page.html" class="px-8 py-3 border-2 border-gray-600 text-gray-300 font-semibold rounded-lg hover:bg-secondary-dark transition">Get In Touch</a>
-                        </div>
-                    </div>
-    
-                    <!-- Right Column: Image -->
-                    <div id="hero-image-wrapper" class="flex justify-center items-center order-1 md:order-2 transition-transform duration-200 ease-out">
-                        <div class="relative w-72 h-72 md:w-96 md:h-96 ">
-                    
-                            <!-- Profile Image & Floating Icons -->
-                            <div class="w-full h-full rounded-full overflow-hidden border-1 border-gray-700/80 shadow-2xl">
-                                <img src="./assets/image/profile.jpg" alt="Profile Picture" class="w-full h-full object-cover">
-                            </div>
-
-                            <!-- Floating Skill Icons -->
-                            <div class="floating-icon absolute -top-2 left-8 md:-top-4 md:left-10" style="animation-delay: 0s;">
-                                <div class="w-24 h-24 md:w-24 md:h-24 flex items-center justify-center p-3">
-                                    <!-- <i class="icon-figma text-3xl text-white"></i> -->
-                                     <img src="./assets/image/icon1.png" alt="">
-                                </div>
-                            </div>
-                            <div class="floating-icon absolute top-16 -right-4 md:top-20 md:-right-8" style="animation-delay: 1s;">
-                                <div class="w-24 h-24 md:w-24 md:h-24 flex items-center justify-center p-3">
-                                    <!-- <i class="icon-layout-grid-02 text-3xl text-white"></i> -->
-                                     <img src="./assets/image/icon2.png" alt="">
-                                </div>
-                            </div>
-                            <div class="floating-icon absolute -bottom-2 left-12 md:-bottom-2 md:left-16" style="animation-delay: 2s;">
-                                <div class="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center p-3">
-                                    <!-- <i class="icon-code-01 text-3xl text-white"></i> -->
-                                     <img src="./assets/image/icon3.png" alt="">
-                                </div>
-                            </div>
-                            <div class="floating-icon absolute bottom-16 -left-6 md:bottom-20 md:-left-10" style="animation-delay: 3s;">
-                                <div class="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center p-3">
-                                    <!-- <i class="icon-palette text-3xl text-white"></i> -->
-                                     <img src="./assets/image/icon4.png" alt="">
-                                </div>
-                            </div>
-                            <div class="floating-icon absolute top-1/2 -translate-y-1/2 -right-10 md:-right-20" style="animation-delay: 4s;">
-                                <div class="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center p-3">
-                                    <!-- <i class="icon-cpu-chip-01 text-3xl text-white"></i> -->
-                                    <img src="./assets/image/icon5.png" alt="">
-                                </div>
-                            </div>
-                            <div class="floating-icon absolute bottom-8 -translate-y-1/2 -right-6 md:-right-8" style="animation-delay: 5s;">
-                                <div class="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center p-3">
-                                    <!-- <i class="icon-cpu-chip-01 text-3xl text-white"></i> -->
-                                    <img src="./assets/image/icon6.png" alt="">
-                                </div>
-                            </div>
-
-                            <!-- Name Plate -->
-                            <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-secondary-dark/50 backdrop-blur-sm rounded-lg shadow-lg border border-gray-700/50 px-6 py-2">
-                                <p class="text-white font-bold text-lg whitespace-nowrap">Tohidul Islam</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ===== SKILLS CAROUSEL SECTION ===== -->
-        <section id="skills" class="pb-24">
+        <!-- Navigation -->
+        <nav id="gradient-nav"
+            class="sticky top-4 w-full max-w-7xl mx-auto bg-[#0d0e13]/90 backdrop-blur-sm z-50 border border-gray-700 rounded-full shadow-lg">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h3 class="text-center text-gray-500 uppercase tracking-widest font-semibold mb-8">Core Technologies & Skills</h3>
-                <div class="swiper-container skills-carousel overflow-hidden">
-                    <div class="swiper-wrapper items-center">
-                        <!-- Skill Slide -->
-                        <div class="swiper-slide"><div class="flex items-center justify-center gap-3 text-gray-400"><i class="icon-figma text-2xl"></i><span class="font-medium">Figma</span></div></div>
-                        <div class="swiper-slide"><div class="flex items-center justify-center gap-3 text-gray-400"><i class="icon-layout-grid-02 text-2xl"></i><span class="font-medium">UI/UX Design</span></div></div>
-                        <div class="swiper-slide"><div class="flex items-center justify-center gap-3 text-gray-400"><i class="icon-palette text-2xl"></i><span class="font-medium">Graphics Design</span></div></div>
-                        <div class="swiper-slide"><div class="flex items-center justify-center gap-3 text-gray-400"><i class="icon-code-01 text-2xl"></i><span class="font-medium">Frontend Dev</span></div></div>
-                        <div class="swiper-slide"><div class="flex items-center justify-center gap-3 text-gray-400"><i class="fab fa-react text-2xl"></i><span class="font-medium">React</span></div></div>
-                        <div class="swiper-slide"><div class="flex items-center justify-center gap-3 text-gray-400"><i class="fab fa-vuejs text-2xl"></i><span class="font-medium">Vue.js</span></div></div>
-                        <div class="swiper-slide"><div class="flex items-center justify-center gap-3 text-gray-400"><i class="fab fa-js-square text-2xl"></i><span class="font-medium">JavaScript</span></div></div>
-                         <!-- Duplicate slides for seamless loop -->
-                        <div class="swiper-slide"><div class="flex items-center justify-center gap-3 text-gray-400"><i class="icon-figma text-2xl"></i><span class="font-medium">Figma</span></div></div>
-                        <div class="swiper-slide"><div class="flex items-center justify-center gap-3 text-gray-400"><i class="icon-layout-grid-02 text-2xl"></i><span class="font-medium">UI/UX Design</span></div></div>
-                        <div class="swiper-slide"><div class="flex items-center justify-center gap-3 text-gray-400"><i class="icon-palette text-2xl"></i><span class="font-medium">Graphics Design</span></div></div>
+                <div class="flex justify-between items-center h-16">
+                    <a href="index.html" class="flex items-center">
+                        <i class="icon-type-02 text-2xl pr-3 text-accent border-r-2 border-accent"></i>
+                        <span class="text-xl uppercase font-bold text-white pl-3">Tohidul Islam</span>
+                    </a>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-8">
+                            <div class="relative group">
+                                <button class="nav-link text-gray-300 hover:text-white font-medium">
+                                    Work Showcase
+                                </button>
+                                <!-- Mega Menu -->
+                                <div
+                                    class="absolute left-1/2 -translate-x-1/2 mt-0 w-[32rem] bg-secondary-dark rounded-lg shadow-lg hidden group-hover:block z-50 border border-gray-700 overflow-hidden">
+                                    <div class="flex gap-3">
+                                        <div class="w-1/2 p-4 flex flex-col">
+                                            <div class="space-y-2">
+                                                <a href="./case-study.html"
+                                                    class="flex items-center gap-3 p-3 rounded-lg text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">
+                                                    <i class="icon-file-heart-02 text-2xl text-center text-accent"></i>
+                                                    <span class="font-medium">Case Study</span>
+                                                </a>
+                                                <a href="./uiux-design.html"
+                                                    class="flex items-center gap-3 p-3 rounded-lg text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">
+                                                    <i class="icon-figma text-2xl text-center text-accent"></i>
+                                                    <span class="font-medium">UI-UX Design</span>
+                                                </a>
+                                                <a href="./visual-design.html"
+                                                    class="flex items-center gap-3 p-3 rounded-lg text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">
+                                                    <i class="icon-palette text-2xl text-center text-accent"></i>
+                                                    <span class="font-medium">Visual Design</span>
+                                                </a>
+                                            </div>
+                                            <div class="mt-auto pt-4 border-t border-gray-700">
+                                                <a href="./my-works.html"
+                                                    class="flex items-center justify-center gap-2 p-3 rounded-lg text-gray-300 bg-primary-dark hover:text-white transition-colors">
+                                                    <span class="font-semibold">See All Works</span>
+                                                    <i class="fas fa-arrow-right text-sm"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <!-- Right side: Image -->
+                                        <div class="w-1/2 bg-primary-dark blink-bg">
+                                            <video src="./assets/image/feature-work2.mp4" autoplay loop muted
+                                                playsinline
+                                                class="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
+                                                alt="Featured Work Video"></video>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="./my-story.html" class="nav-link text-gray-300 hover:text-white font-medium">My
+                                Story</a>
+                            <a href="./assets/doc/tohidul-islam-resume.pdf" target="_blank"
+                                class="nav-link text-gray-300 hover:text-white font-medium">Resume</a>
+                        </div>
+                    </div>
+                    <div class="md:hidden">
+                        <button id="mobile-menu-button"
+                            class="relative z-[60] text-gray-300 hover:text-white focus:outline-none">
+                            <i id="hamburger-icon" class="fas fa-bars text-xl"></i>
+                            <i id="close-icon" class="fas fa-times text-xl hidden"></i>
+                        </button>
                     </div>
                 </div>
             </div>
-        </section>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu"
+                class="fixed top-0 right-0 bottom-0 min-h-[83vh] w-full max-w-xs bg-secondary-dark shadow-lg flex flex-col md:hidden z-50">
+                <!-- Menu Header -->
+                <div class="bg-secondary-dark flex justify-between items-center px-4 py-4 border-b border-gray-700">
+                    <span class="text-lg font-semibold text-white">Menu</span>
+                </div>
 
-        <!-- ===== SELECTED WORKS SECTION ===== -->
-        <section id="selected-works" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-gray-800 pt-16 mb-24">
-            <div class="mb-16">
-                <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Selected Works</h2>
-                <p class="text-lg text-gray-400 max-w-2xl">
-                    A glimpse into our process and passion for creating impactful digital experiences.
-                </p>
-            </div>
-
-            <div id="work-grid" class="grid md:grid-cols-2 gap-12">
-                
-                <!-- Work Card 1 -->
-                <a href="./hopon-details.html" data-page="project-detail" data-category="case-study" class="group work-card block rounded-xl transition duration-300 work-item-link">
-                    <div class="aspect-video bg-gray-700 rounded-lg overflow-hidden mb-4"><img src="./assets/image/works/hopon2.jpg" alt="Project A preview" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-transform duration-500 ease-in-out group-hover:scale-105 group-hover:rotate-1" /></div>
-                    <p class="text-gray-400 text-sm">Mobile App • 2025</p>
-                    <h3 class="text-3xl font-extrabold text-white mt-1 group-hover:text-accent transition-colors duration-300">Hop On: Ride, food & Delivery App</h3>
-                    <div class="flex flex-wrap gap-2 pt-4"><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Branding</span><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">UI/UX</span><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Strategy</span></div>
-                </a>
-
-                <!-- Work Card 2 -->
-                <a href="./ed-ai.html" data-page="project-detail" data-category="website saas" class="group work-card block rounded-xl transition duration-300 work-item-link">
-                    <div class="aspect-video bg-gray-700 rounded-lg overflow-hidden mb-4"><img src="./assets/image/works/ed-ai2.jpg" alt="Project B preview" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-transform duration-500 ease-in-out group-hover:scale-105 group-hover:rotate-1" /></div>
-                    <p class="text-gray-400 text-sm">Web Design • 2025</p>
-                    <h3 class="text-3xl font-extrabold text-white mt-1 group-hover:text-accent transition-colors duration-300">ED AI: AI-Powered University Admissions Assistant</h3>
-                    <div class="flex flex-wrap gap-2 pt-4"><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Web Design</span><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Figma</span><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">SaaS</span></div>
-                </a>
-
-                <!-- Work Card 3 -->
-                <a href="#project-detail" data-page="project-detail" data-category="mobile-app" class="group work-card block rounded-xl transition duration-300 work-item-link">
-                    <div class="aspect-video bg-gray-700 rounded-lg overflow-hidden mb-4"><img src="./assets/image/works/3gem1.jpg" alt="Project C preview" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-transform duration-500 ease-in-out group-hover:scale-105 group-hover:rotate-1" /></div>
-                    <p class="text-gray-400 text-sm">Web Design • 2024</p>
-                    <h3 class="text-3xl font-extrabold text-white mt-1 group-hover:text-accent transition-colors duration-300">3Gem: Website Design</h3>
-                    <div class="flex flex-wrap gap-2 pt-4"><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Web Design</span><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">UI-UX Design</span><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Prototype</span></div>
-                </a>
-
-                <!-- Work Card 4 -->
-                <a href="#project-detail" data-page="project-detail" data-category="case-study website" class="group work-card block rounded-xl transition duration-300 work-item-link">
-                    <div class="aspect-video bg-gray-700 rounded-lg overflow-hidden mb-4"><img src="./assets/image/works/studylity2.png" alt="Project D preview" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-transform duration-500 ease-in-out group-hover:scale-105 group-hover:rotate-1" /></div>
-                    <p class="text-gray-400 text-sm">Dashboard • 2022</p>
-                    <h3 class="text-3xl font-extrabold text-white mt-1 group-hover:text-accent transition-colors duration-300">Quantum: Data Visualization Dashboard</h3>
-                    <div class="flex flex-wrap gap-2 pt-4"><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">UI/UX Design</span><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Data Viz</span><span class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Analytics</span></div>
-                </a>
-            </div>
-            <!-- See All Works Button -->
-            <div class="text-center mt-16">
-                <a href="./my-works.html" class="inline-block px-8 py-3 border-2 border-gray-600 text-gray-300 font-semibold rounded-lg hover:bg-secondary-dark hover:text-white transition">
-                    See All Works
-                </a>
-            </div>
-        </section>
-
-        <!-- ===== FEATURED WORKS CAROUSEL SECTION ===== -->
-        <section id="featured-works" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-gray-800 pt-16">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-4">More Featured Works</h2>
-                <p class="text-lg text-gray-400 max-w-2xl mx-auto">
-                    A carousel showcasing a variety of projects from different domains.
-                </p>
-            </div>
-
-            <!-- Swiper Carousel -->
-            <div class="swiper-container featured-works-carousel overflow-hidden">
-                <div class="swiper-wrapper">
-                    <!-- Slide 1 -->
-                    <div class="swiper-slide">
-                        <div class="bg-secondary-dark rounded-xl overflow-hidden group featured-work-slide">
-                            <img src="./assets/image/works/hopon2.jpg" alt="Project Alpha" class="w-full h-48 object-cover">
-                            <div class="p-4"><h3 class="font-bold text-lg text-white">Hop On</h3><p class="text-sm text-gray-400">Mobile App</p></div>
-                        </div>
+                <!-- Menu Links -->
+                <nav class="flex-grow bg-secondary-dark p-4 space-y-2">
+                    <div class="px-3 py-2 font-medium text-gray-400 text-sm uppercase tracking-wider">Work Showcase
                     </div>
-                    <!-- Slide 2 -->
-                    <div class="swiper-slide">
-                        <div class="bg-secondary-dark rounded-xl overflow-hidden group featured-work-slide">
-                            <img src="https://placehold.co/600x400/1f2937/d1d5db?text=Project+Beta" alt="Project Beta" class="w-full h-48 object-cover">
-                            <div class="p-4"><h3 class="font-bold text-lg text-white">Project Beta</h3><p class="text-sm text-gray-400">Graphics Design</p></div>
-                        </div>
+                    <a href="./case-study.html"
+                        class="block px-3 py-2 rounded-md text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">Case
+                        Study</a>
+                    <a href="./uiux-design.html"
+                        class="block px-3 py-2 rounded-md text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">UI-UX
+                        Design</a>
+                    <a href="./visual-design.html"
+                        class="block px-3 py-2 rounded-md text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">Visual
+                        Design</a>
+                    <a href="./my-story.html"
+                        class="block px-3 py-2 rounded-md text-gray-300 hover:bg-primary-dark hover:text-white transition-colors mt-4">My
+                        Story</a>
+                    <a href="./assets/doc/tohidul-islam-resume.pdf" target="_blank"
+                        class="block px-3 py-2 rounded-md text-gray-300 hover:bg-primary-dark hover:text-white transition-colors">Resume</a>
+                </nav>
+
+                <!-- Menu Footer -->
+                <div class="bg-secondary-dark p-4 border-t border-gray-700">
+                    <div class="flex justify-center gap-6">
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-accent transition-colors"><i
+                                class="fab fa-linkedin-in text-xl"></i></a>
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-accent transition-colors"><i
+                                class="fab fa-behance text-xl"></i></a>
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-accent transition-colors"><i
+                                class="fab fa-dribbble text-xl"></i></a>
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-accent transition-colors"><i
+                                class="fab fa-github text-xl"></i></a>
                     </div>
-                    <!-- Slide 3 -->
-                    <div class="swiper-slide">
-                        <div class="bg-secondary-dark rounded-xl overflow-hidden group featured-work-slide">
-                            <img src="https://placehold.co/600x400/111827/9333ea?text=Project+Gamma" alt="Project Gamma" class="w-full h-48 object-cover">
-                            <div class="p-4"><h3 class="font-bold text-lg text-white">Project Gamma</h3><p class="text-sm text-gray-400">Landing Page</p></div>
+                </div>
+            </div>
+        </nav>
+
+        <main class="pt-12 pb-24">
+
+            <!-- ===== HERO SECTION ===== -->
+            <section id="home" class="px-4 sm:px-6 lg:px-8 mb-16 overflow-hidden">
+                <div class="relative overflow-hidden max-w-7xl mx-auto">
+                    <div class="grid md:grid-cols-2 gap-y-16 md:gap-x-16 items-center py-24 md:py-32">
+                        <!-- Left Column: Text Content -->
+                        <div class="space-y-6 text-center md:text-left order-2 md:order-1">
+                            <span class="text-accent uppercase font-semibold tracking-widest">Sr. UI/UX Designer &
+                                Developer</span>
+                            <h1 class="text-5xl md:text-7xl font-bold text-white leading-tight">
+                                Grow Your Brand with Impactful <br> UI & UX
+                            </h1>
+                            <p class="text-xl text-gray-400 max-w-2xl mx-auto md:mx-0">
+                                Passionate UI-UX Designer crafting intuitive SaaS and B2B interfaces powered by scalable
+                                design systems.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
+                                <a href="./my-works.html"
+                                    class="px-8 py-3 bg-accent text-white font-semibold rounded-lg shadow-lg hover:bg-purple-700 transition">See
+                                    What I’ve Designed</a>
+                                <a href="./contact-page.html"
+                                    class="px-8 py-3 border-2 border-gray-600 text-gray-300 font-semibold rounded-lg hover:bg-secondary-dark transition">Get
+                                    In Touch</a>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Slide 4 -->
-                    <div class="swiper-slide">
-                        <div class="bg-secondary-dark rounded-xl overflow-hidden group featured-work-slide">
-                            <img src="https://placehold.co/600x400/1f2937/d1d5db?text=Project+Delta" alt="Project Delta" class="w-full h-48 object-cover">
-                            <div class="p-4"><h3 class="font-bold text-lg text-white">Project Delta</h3><p class="text-sm text-gray-400">Mobile App</p></div>
-                        </div>
-                    </div>
-                    <!-- Slide 5 -->
-                    <div class="swiper-slide">
-                        <div class="bg-secondary-dark rounded-xl overflow-hidden group featured-work-slide">
-                            <img src="https://placehold.co/600x400/111827/9333ea?text=Project+Epsilon" alt="Project Epsilon" class="w-full h-48 object-cover">
-                            <div class="p-4"><h3 class="font-bold text-lg text-white">Project Epsilon</h3><p class="text-sm text-gray-400">Case Study</p></div>
+
+                        <!-- Right Column: Image -->
+                        <div id="hero-image-wrapper"
+                            class="flex justify-center items-center order-1 md:order-2 transition-transform duration-200 ease-out">
+                            <div class="relative w-72 h-72 md:w-96 md:h-96 ">
+
+                                <!-- Profile Image & Floating Icons -->
+                                <div
+                                    class="w-full h-full rounded-full overflow-hidden border-1 border-gray-700/80 shadow-2xl">
+                                    <img src="./assets/image/profile.jpg" alt="Profile Picture"
+                                        class="w-full h-full object-cover">
+                                </div>
+
+                                <!-- Floating Skill Icons -->
+                                <div class="floating-icon absolute -top-2 left-8 md:-top-4 md:left-10"
+                                    style="animation-delay: 0s;">
+                                    <div class="w-24 h-24 md:w-24 md:h-24 flex items-center justify-center p-3">
+                                        <!-- <i class="icon-figma text-3xl text-white"></i> -->
+                                        <img src="./assets/image/icon1.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="floating-icon absolute top-16 -right-4 md:top-20 md:-right-8"
+                                    style="animation-delay: 1s;">
+                                    <div class="w-24 h-24 md:w-24 md:h-24 flex items-center justify-center p-3">
+                                        <!-- <i class="icon-layout-grid-02 text-3xl text-white"></i> -->
+                                        <img src="./assets/image/icon2.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="floating-icon absolute -bottom-2 left-12 md:-bottom-2 md:left-16"
+                                    style="animation-delay: 2s;">
+                                    <div class="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center p-3">
+                                        <!-- <i class="icon-code-01 text-3xl text-white"></i> -->
+                                        <img src="./assets/image/icon3.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="floating-icon absolute bottom-16 -left-6 md:bottom-20 md:-left-10"
+                                    style="animation-delay: 3s;">
+                                    <div class="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center p-3">
+                                        <!-- <i class="icon-palette text-3xl text-white"></i> -->
+                                        <img src="./assets/image/icon4.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="floating-icon absolute top-1/2 -translate-y-1/2 -right-10 md:-right-20"
+                                    style="animation-delay: 4s;">
+                                    <div class="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center p-3">
+                                        <!-- <i class="icon-cpu-chip-01 text-3xl text-white"></i> -->
+                                        <img src="./assets/image/icon5.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="floating-icon absolute bottom-8 -translate-y-1/2 -right-6 md:-right-8"
+                                    style="animation-delay: 5s;">
+                                    <div class="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center p-3">
+                                        <!-- <i class="icon-cpu-chip-01 text-3xl text-white"></i> -->
+                                        <img src="./assets/image/icon6.png" alt="">
+                                    </div>
+                                </div>
+
+                                <!-- Name Plate -->
+                                <div
+                                    class="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-secondary-dark/50 backdrop-blur-sm rounded-lg shadow-lg border border-gray-700/50 px-6 py-2">
+                                    <p class="text-white font-bold text-lg whitespace-nowrap">Tohidul Islam</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- Add Pagination -->
-                <div class="swiper-pagination mt-8 relative"></div>
+            </section>
+
+            <!-- ===== SKILLS CAROUSEL SECTION ===== -->
+            <section id="skills" class="pb-24">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h3 class="text-center text-gray-500 uppercase tracking-widest font-semibold mb-8">Core Technologies
+                        & Skills</h3>
+                    <div class="swiper-container skills-carousel overflow-hidden">
+                        <div class="swiper-wrapper items-center">
+                            <!-- Skill Slide -->
+                            <div class="swiper-slide">
+                                <div class="flex items-center justify-center gap-3 text-gray-400"><i
+                                        class="icon-figma text-2xl"></i><span class="font-medium">Figma</span></div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="flex items-center justify-center gap-3 text-gray-400"><i
+                                        class="icon-layout-grid-02 text-2xl"></i><span class="font-medium">UI/UX
+                                        Design</span></div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="flex items-center justify-center gap-3 text-gray-400"><i
+                                        class="icon-palette text-2xl"></i><span class="font-medium">Graphics
+                                        Design</span></div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="flex items-center justify-center gap-3 text-gray-400"><i
+                                        class="icon-code-01 text-2xl"></i><span class="font-medium">Frontend Dev</span>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="flex items-center justify-center gap-3 text-gray-400"><i
+                                        class="fab fa-react text-2xl"></i><span class="font-medium">React</span></div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="flex items-center justify-center gap-3 text-gray-400"><i
+                                        class="fab fa-vuejs text-2xl"></i><span class="font-medium">Vue.js</span></div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="flex items-center justify-center gap-3 text-gray-400"><i
+                                        class="fab fa-js-square text-2xl"></i><span
+                                        class="font-medium">JavaScript</span></div>
+                            </div>
+                            <!-- Duplicate slides for seamless loop -->
+                            <div class="swiper-slide">
+                                <div class="flex items-center justify-center gap-3 text-gray-400"><i
+                                        class="icon-figma text-2xl"></i><span class="font-medium">Figma</span></div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="flex items-center justify-center gap-3 text-gray-400"><i
+                                        class="icon-layout-grid-02 text-2xl"></i><span class="font-medium">UI/UX
+                                        Design</span></div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="flex items-center justify-center gap-3 text-gray-400"><i
+                                        class="icon-palette text-2xl"></i><span class="font-medium">Graphics
+                                        Design</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== SELECTED WORKS SECTION ===== -->
+            <section id="selected-works"
+                class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 border-t border-gray-800 pt-16 mb-24">
+                <div class="mb-16">
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Selected Works</h2>
+                    <p class="text-lg text-gray-400 max-w-2xl">
+                        A glimpse into our process and passion for creating impactful digital experiences.
+                    </p>
+                </div>
+
+                <div id="work-grid" class="grid md:grid-cols-2 gap-12">
+
+                    <!-- Work Card 1 -->
+                    <a href="./hopon-details.html" data-page="project-detail" data-category="case-study"
+                        class="group work-card block rounded-xl transition duration-300 work-item-link">
+                        <div class="aspect-video bg-gray-700 rounded-lg overflow-hidden mb-4"><img
+                                src="./assets/image/works/hopon2.jpg" alt="Project A preview"
+                                class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-transform duration-500 ease-in-out group-hover:scale-105 group-hover:rotate-1" />
+                        </div>
+                        <p class="text-gray-400 text-sm">Mobile App • 2025</p>
+                        <h3
+                            class="text-3xl font-extrabold text-white mt-1 group-hover:text-accent transition-colors duration-300">
+                            Hop On: Ride, food & Delivery App</h3>
+                        <div class="flex flex-wrap gap-2 pt-4"><span
+                                class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Branding</span><span
+                                class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">UI/UX</span><span
+                                class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Strategy</span>
+                        </div>
+                    </a>
+
+                    <!-- Work Card 2 -->
+                    <a href="./ed-ai.html" data-page="project-detail" data-category="website saas"
+                        class="group work-card block rounded-xl transition duration-300 work-item-link">
+                        <div class="aspect-video bg-gray-700 rounded-lg overflow-hidden mb-4"><img
+                                src="./assets/image/works/ed-ai2.jpg" alt="Project B preview"
+                                class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-transform duration-500 ease-in-out group-hover:scale-105 group-hover:rotate-1" />
+                        </div>
+                        <p class="text-gray-400 text-sm">Web Design • 2025</p>
+                        <h3
+                            class="text-3xl font-extrabold text-white mt-1 group-hover:text-accent transition-colors duration-300">
+                            ED AI: AI-Powered University Admissions Assistant</h3>
+                        <div class="flex flex-wrap gap-2 pt-4"><span
+                                class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Web
+                                Design</span><span
+                                class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Figma</span><span
+                                class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">SaaS</span>
+                        </div>
+                    </a>
+
+                    <!-- Work Card 3 -->
+                    <a href="#project-detail" data-page="project-detail" data-category="mobile-app"
+                        class="group work-card block rounded-xl transition duration-300 work-item-link">
+                        <div class="aspect-video bg-gray-700 rounded-lg overflow-hidden mb-4"><img
+                                src="./assets/image/works/3gem1.jpg" alt="Project C preview"
+                                class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-transform duration-500 ease-in-out group-hover:scale-105 group-hover:rotate-1" />
+                        </div>
+                        <p class="text-gray-400 text-sm">Web Design • 2024</p>
+                        <h3
+                            class="text-3xl font-extrabold text-white mt-1 group-hover:text-accent transition-colors duration-300">
+                            3Gem: Website Design</h3>
+                        <div class="flex flex-wrap gap-2 pt-4"><span
+                                class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Web
+                                Design</span><span
+                                class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">UI-UX
+                                Design</span><span
+                                class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Prototype</span>
+                        </div>
+                    </a>
+
+                    <!-- Work Card 4 -->
+                    <a href="#project-detail" data-page="project-detail" data-category="case-study website"
+                        class="group work-card block rounded-xl transition duration-300 work-item-link">
+                        <div class="aspect-video bg-gray-700 rounded-lg overflow-hidden mb-4"><img
+                                src="./assets/image/works/studylity2.png" alt="Project D preview"
+                                class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-transform duration-500 ease-in-out group-hover:scale-105 group-hover:rotate-1" />
+                        </div>
+                        <p class="text-gray-400 text-sm">Dashboard • 2022</p>
+                        <h3
+                            class="text-3xl font-extrabold text-white mt-1 group-hover:text-accent transition-colors duration-300">
+                            Quantum: Data Visualization Dashboard</h3>
+                        <div class="flex flex-wrap gap-2 pt-4"><span
+                                class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">UI/UX
+                                Design</span><span
+                                class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Data
+                                Viz</span><span
+                                class="text-xs font-semibold px-3 py-1 bg-accent/20 text-accent rounded-full">Analytics</span>
+                        </div>
+                    </a>
+                </div>
+                <!-- See All Works Button -->
+                <div class="text-center mt-16">
+                    <a href="./my-works.html"
+                        class="inline-block px-8 py-3 border-2 border-gray-600 text-gray-300 font-semibold rounded-lg hover:bg-secondary-dark hover:text-white transition">
+                        See All Works
+                    </a>
+                </div>
+            </section>
+
+            <!-- ===== FEATURED WORKS CAROUSEL SECTION ===== -->
+            <section id="featured-works" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 border-t border-gray-800 pt-16">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-4">More Featured Works</h2>
+                    <p class="text-lg text-gray-400 max-w-2xl mx-auto">
+                        A carousel showcasing a variety of projects from different domains.
+                    </p>
+                </div>
+
+                <!-- Swiper Carousel -->
+                <div class="swiper-container featured-works-carousel overflow-hidden">
+                    <div class="swiper-wrapper">
+                        <!-- Slide 1 -->
+                        <div class="swiper-slide">
+                            <div class="bg-secondary-dark rounded-xl overflow-hidden group featured-work-slide">
+                                <img src="./assets/image/works/hopon2.jpg" alt="Project Alpha"
+                                    class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <h3 class="font-bold text-lg text-white">Hop On</h3>
+                                    <p class="text-sm text-gray-400">Mobile App</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="swiper-slide">
+                            <div class="bg-secondary-dark rounded-xl overflow-hidden group featured-work-slide">
+                                <img src="https://placehold.co/600x400/1f2937/d1d5db?text=Project+Beta"
+                                    alt="Project Beta" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <h3 class="font-bold text-lg text-white">Project Beta</h3>
+                                    <p class="text-sm text-gray-400">Graphics Design</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="swiper-slide">
+                            <div class="bg-secondary-dark rounded-xl overflow-hidden group featured-work-slide">
+                                <img src="https://placehold.co/600x400/111827/9333ea?text=Project+Gamma"
+                                    alt="Project Gamma" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <h3 class="font-bold text-lg text-white">Project Gamma</h3>
+                                    <p class="text-sm text-gray-400">Landing Page</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 4 -->
+                        <div class="swiper-slide">
+                            <div class="bg-secondary-dark rounded-xl overflow-hidden group featured-work-slide">
+                                <img src="https://placehold.co/600x400/1f2937/d1d5db?text=Project+Delta"
+                                    alt="Project Delta" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <h3 class="font-bold text-lg text-white">Project Delta</h3>
+                                    <p class="text-sm text-gray-400">Mobile App</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 5 -->
+                        <div class="swiper-slide">
+                            <div class="bg-secondary-dark rounded-xl overflow-hidden group featured-work-slide">
+                                <img src="https://placehold.co/600x400/111827/9333ea?text=Project+Epsilon"
+                                    alt="Project Epsilon" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <h3 class="font-bold text-lg text-white">Project Epsilon</h3>
+                                    <p class="text-sm text-gray-400">Case Study</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination mt-8 relative"></div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-800">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center text-gray-500">
+                <p class="text-sm">&copy; 2024 Tohidul Islam. All Rights Reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="./work-page.html" class="text-sm hover:text-white nav-link">Work</a>
+                    <a href="./studio-page.html" class="text-sm hover:text-white nav-link">Studio</a>
+                    <a href="./contact-page.html" class="text-sm hover:text-white nav-link">Contact</a>
+                </div>
             </div>
-        </section>
+        </footer>
 
-    </main>
+        <!-- Floating WhatsApp Button -->
+        <a href="https://wa.me/1234567890" target="_blank"
+            class="fixed bottom-8 right-8 z-50 flex items-center gap-3 px-5 py-3 bg-green-500 text-white font-bold rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 ease-in-out transform hover:scale-105">
+            <i class="fab fa-whatsapp text-2xl"></i>
+            <span class="hidden sm:inline">Connect with me</span>
+        </a>
 
-    <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-800">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center text-gray-500">
-            <p class="text-sm">&copy; 2024 Tohidul Islam. All Rights Reserved.</p>
-            <div class="flex space-x-6 mt-4 md:mt-0">
-                <a href="./work-page.html" class="text-sm hover:text-white nav-link">Work</a>
-                <a href="./studio-page.html" class="text-sm hover:text-white nav-link">Studio</a>
-                <a href="./contact-page.html" class="text-sm hover:text-white nav-link">Contact</a>
-            </div>
-        </div>
-    </footer>
+        <!-- Swiper.js Script -->
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/1234567890" target="_blank" class="fixed bottom-8 right-8 z-50 flex items-center gap-3 px-5 py-3 bg-green-500 text-white font-bold rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 ease-in-out transform hover:scale-105">
-        <i class="fab fa-whatsapp text-2xl"></i>
-        <span class="hidden sm:inline">Connect with me</span>
-    </a>
+        <!-- GSAP and ScrollTrigger -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-    <!-- Swiper.js Script -->
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <script src="./assets/script.js"></script>
 
-    <script src="./assets/script.js"></script>
+    </div>
 </body>
+
 </html>

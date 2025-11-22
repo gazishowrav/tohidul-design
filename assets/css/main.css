@@ -1,0 +1,159 @@
+/* Base styles to match the dark aesthetic */
+body {
+    background-color: #0d0e13;
+    /* Very dark background */
+    color: #f3f4f6;
+    /* Light gray text */
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+}
+
+/* Custom underline effect for navigation */
+.nav-link {
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.3s;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: currentColor;
+    /* Matches text color */
+    transition: width 0.3s ease-out;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link.active {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* Responsive typography for the hero text */
+.hero-text {
+    font-size: 3rem;
+    /* Default for mobile */
+    line-height: 1.1;
+}
+
+@media (min-width: 640px) {
+    .hero-text {
+        font-size: 4.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero-text {
+        font-size: 7rem;
+    }
+}
+
+/* Ensure cursor pointer on clickable work items */
+.work-item-link {
+    cursor: pointer;
+}
+
+/* Custom Swiper Styles */
+.swiper-button-next,
+.swiper-button-prev {
+    color: var(--accent, #9333ea);
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--accent, #9333ea);
+}
+
+.featured-work-slide {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featured-work-slide:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Floating animation for skill icons */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.floating-icon>div {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Mobile Menu Transition */
+#mobile-menu {
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(100%);
+    /* Start off-screen */
+}
+
+#mobile-menu.is-open {
+    transform: translateX(0);
+}
+
+/* Blink animation for background */
+@keyframes blink-background {
+    0% {
+        background-color: #111827;
+    }
+
+    /* primary-dark */
+    50% {
+        background-color: #1F2937;
+    }
+
+    /* secondary-dark */
+    100% {
+        background-color: #111827;
+    }
+}
+
+.aurora-background {
+    background: radial-gradient(circle at top,
+            rgba(255, 255, 255, 0.08) 0%,
+            rgba(255, 140, 250, 0.08) 20%,
+            rgba(0, 0, 0, 0.0) 60%);
+}
+
+#gradient-nav::before {
+    content: '';
+    position: absolute;
+
+    /* Inset by a negative amount to be slightly larger than the nav */
+    inset: -5px;
+
+    /* This is your gradient! */
+    background: linear-gradient(to right, #8b5cf6, #ec4899, #f97316);
+
+    /* Blur the gradient to create the "glow" */
+    filter: blur(15px);
+
+    /* Place the glow *behind* the nav bar's content */
+    z-index: -1;
+
+    /* IMPORTANT: Match the border-radius of the nav bar */
+    border-radius: 9999px;
+    /* This matches `rounded-full` */
+
+    /* Adjust opacity */
+    opacity: 0.2;
+}

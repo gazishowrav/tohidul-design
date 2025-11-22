@@ -32,21 +32,21 @@ document.addEventListener('DOMContentLoaded', function () {
     const imageWrapper = document.getElementById('hero-image-wrapper');
 
     if (heroSection) {
-        heroSection.addEventListener('mousemove', function(e) {
+        heroSection.addEventListener('mousemove', function (e) {
             const { left, top, width, height } = heroSection.getBoundingClientRect();
             const x = e.clientX - left;
             const y = e.clientY - top;
-    
+
             const moveX = (x - width / 2) / (width / 2);
             const moveY = (y - height / 2) / (height / 2);
-    
+
             const rotateX = -moveY * 8; // Rotate on X-axis
             const rotateY = moveX * 8;  // Rotate on Y-axis
-    
+
             imageWrapper.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
         });
-    
-        heroSection.addEventListener('mouseleave', function() {
+
+        heroSection.addEventListener('mouseleave', function () {
             imageWrapper.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
         });
     }
@@ -133,5 +133,41 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             });
         });
+    }
+    // GSAP Animation for Floating Icons
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const heroSection = document.getElementById('home');
+        const skillsSection = document.getElementById('skills');
+        const icons = document.querySelectorAll('.floating-icon');
+
+        if (heroSection && skillsSection && icons.length > 0) {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: heroSection,
+                    start: "top top",
+                    end: "bottom center", // Extended end point for slower animation
+                    scrub: 1, // Smooth scrubbing
+                    invalidateOnRefresh: true, // Recalculate on resize
+                }
+            });
+
+            // Animate icons
+            tl.to(icons, {
+                y: () => {
+                    // Recalculate distance dynamically
+                    const heroRect = heroSection.getBoundingClientRect();
+                    const skillsRect = skillsSection.getBoundingClientRect();
+                    return skillsRect.top - heroRect.top + (skillsRect.height / 2) - (heroRect.height / 2);
+                },
+                x: (i) => (i % 2 === 0 ? -50 : 50) + (Math.random() * 40 - 20), // Scatter slightly horizontally
+                scale: 0.5, // Shrink to fit in better
+                opacity: 0.2, // Don't fade out completely, keep slightly visible
+                rotation: (i) => Math.random() * 180 - 90, // Random rotation
+                stagger: 0.1, // Stagger start times for natural feel
+                ease: "power1.out" // Smoother easing
+            });
+        }
     }
 });
